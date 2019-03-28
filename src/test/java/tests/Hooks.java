@@ -10,13 +10,13 @@ import org.testng.annotations.BeforeMethod;
 import utilities.DataHandler;
 
 import java.lang.reflect.Method;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Hooks {
-    protected WebDriver webDriver;
-    protected EcofoodFacade ecofoodFacade;
+
+    protected volatile Map<String, WebDriver> webDriverMap = new HashMap<>();
+
 
     @BeforeMethod
     public void setup(Method method) {
@@ -34,25 +34,28 @@ public abstract class Hooks {
 //        } catch (MalformedURLException e) {
 //            e.printStackTrace();
 //        }
-
-        webDriver = new ChromeDriver();
+        System.out.println(Thread.currentThread().getId());
+        System.out.println(method.getName());
+        WebDriver webDriver = new ChromeDriver();
         webDriver.get(ConfigLoader.getValueByKey("URL"));
         webDriver.manage().window().maximize();
-        DataHandler.dataRead("data.txt", DataHandler.DataType.DATA);
-        ecofoodFacade = new EcofoodFacade(webDriver);
+        webDriverMap.put(method.getName(), webDriver);
 
+        DataHandler.dataRead("data.txt", DataHandler.DataType.DATA);
     }
 
 
     @AfterMethod
-    public void afterMethod(ITestResult result) {
+    public void afterMethod(ITestResult result, Method method) {
         if (ITestResult.FAILURE == result.getStatus()) {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd HH_mm_ss");
-            Date date = new Date();
-            ecofoodFacade.takePhoto(dateFormat.format(date), result.getName());
+            new EcofoodFacade(webDriverMap.get(method.getName())).takePhoto("error", result.getName());
         }
         // ((JavascriptExecutor)webDriver).executeScript("sauce:job-result=" + (result.isSuccess() ? "passed" : "failed"));
 
-        webDriver.quit();
+        webDriverMap.get(method.getName()).quit();
+    }
+
+    protected EcofoodFacade setEcofoodFacade(String testName) {
+        return new EcofoodFacade(webDriverMap.get(testName));
     }
 }

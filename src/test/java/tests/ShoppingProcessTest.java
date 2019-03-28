@@ -1,13 +1,16 @@
 package tests;
 
+import helpers.EcofoodFacade;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class ShoppingProcessTest extends Hooks {
+    EcofoodFacade ecofoodFacade;
     @Test
     public void AddProductsFromHomePage() {
+
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
         int productsAdded = ecofoodFacade.verifyProductsAddedFromHomePage();
@@ -16,6 +19,7 @@ public class ShoppingProcessTest extends Hooks {
 
     @Test
     public void AddProductsFromCatalog() {
+
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.goToCatalogPage();
         ecofoodFacade.addCatalogProducts();
@@ -26,6 +30,7 @@ public class ShoppingProcessTest extends Hooks {
 
     @Test
     public void AddProductAsUnauthenticatedUser() {
+
         ecofoodFacade.addProductsFromHomePage();
         int productsAdded = ecofoodFacade.getTotalProductsAdded();
         ecofoodFacade.goToLoginPage();
@@ -36,6 +41,7 @@ public class ShoppingProcessTest extends Hooks {
 
     @Test
     public void AddAllStockProduct() {
+
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addAllStock();
         int result = ecofoodFacade.verifyAllStockAdded();
@@ -44,6 +50,7 @@ public class ShoppingProcessTest extends Hooks {
 
     @Test
     public void decreaseTheQuantity() {
+
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
         int before = ecofoodFacade.getTotalProductsAdded();
@@ -54,6 +61,7 @@ public class ShoppingProcessTest extends Hooks {
 
     @Test
     public void emptyShoppingCart() {
+
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
         ecofoodFacade.emptyCart();
@@ -63,6 +71,7 @@ public class ShoppingProcessTest extends Hooks {
 
     @Test
     public void productDetailsAsALoggedUser() {
+
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.goToCatalogPage();
         ecofoodFacade.productDetails();

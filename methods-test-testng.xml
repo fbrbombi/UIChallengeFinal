@@ -1,0 +1,8 @@
+<suite name="TestSuite" thread-count="2" parallel="methods">
+    <test name="testGuru">
+        <classes>
+            <class name="tests.UsersAccountTest">
+            </class>
+        </classes>
+    </test>
+</suite>

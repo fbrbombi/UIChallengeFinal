@@ -1,13 +1,21 @@
 package tests;
 
+import helpers.EcofoodFacade;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class OrdersFullfillmentTest extends Hooks {
+
+
+    EcofoodFacade ecofoodFacade;
+
     @Test
     public void verifyOrder() {
+
+
+        System.out.println(Thread.currentThread().getId());
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
         ecofoodFacade.goToCheckoutPageFromHomePage();

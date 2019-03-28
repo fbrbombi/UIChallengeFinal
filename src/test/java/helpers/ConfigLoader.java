@@ -11,14 +11,14 @@ public class ConfigLoader {
     private ConfigLoader() {
     }
 
-    public static String getValueByKey(String key) {
+    public synchronized static String getValueByKey(String key) {
         if (properties == null) {
             loadProperties();
         }
         return properties.get(key).toString();
     }
 
-    private static Properties loadProperties() {
+    private synchronized static Properties loadProperties() {
         try {
             properties = new Properties();
             properties.load(ConfigLoader.class.getResourceAsStream(PROPERTIES_FILENAME));

@@ -116,13 +116,15 @@ public class EcofoodMainPage extends EcofoodBasePage {
         return header.get(1).getText();
     }
 
-    public EcofoodLogin goToLoginWebPage() {
+    public synchronized EcofoodLogin goToLoginWebPage() {
         driverFacade.waitUntilThePageIsLoaded();
-        login.click();
+        driverFacade.waitForVisibility(login);
+        driverFacade.clickElement(login);
+        // login.click();
         return PageFactory.initElements(webDriver, EcofoodLogin.class);
     }
 
-    public EcofoodRegister goToRegisterWebPage() {
+    public synchronized EcofoodRegister goToRegisterWebPage() {
         registrarse.click();
         return PageFactory.initElements(webDriver, EcofoodRegister.class);
     }

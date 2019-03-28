@@ -30,6 +30,7 @@ public class EcofoodFacade {
     }
 
     public void fillRegisterForm() {
+        System.out.println("registro");
         registerPage.fillForm();
     }
 
@@ -37,8 +38,9 @@ public class EcofoodFacade {
         return registerPage.getAlert();
     }
 
-    public void goToLoginPage() {
+    public synchronized void goToLoginPage() {
         loginPage = homePage.goToLoginWebPage();
+        System.out.println("paso");
     }
 
     public void fillLoginForm() {

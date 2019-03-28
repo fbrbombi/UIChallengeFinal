@@ -1,11 +1,14 @@
 package tests;
 
+import helpers.EcofoodFacade;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PaymentMethodAdministrationTest extends Hooks {
+
+    EcofoodFacade ecofoodFacade;
 
     @Test
     public void successfulCheckoutWithUnregisteredPayment() {
@@ -21,6 +24,7 @@ public class PaymentMethodAdministrationTest extends Hooks {
 
     @Test
     public void successfulCheckoutWithRegisteredPayment() {
+
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.goToPaymentMethodPage();
         ecofoodFacade.addNewMethod();
