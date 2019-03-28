@@ -3,13 +3,16 @@ package tests;
 import helpers.EcofoodFacade;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class ShoppingProcessTest extends Hooks {
-    EcofoodFacade ecofoodFacade;
+
     @Test
-    public void AddProductsFromHomePage() {
+    public void AddProductsFromHomePage(Method method) {
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
 
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
@@ -18,7 +21,8 @@ public class ShoppingProcessTest extends Hooks {
     }
 
     @Test
-    public void AddProductsFromCatalog() {
+    public void AddProductsFromCatalog(Method method) {
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
 
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.goToCatalogPage();
@@ -29,7 +33,8 @@ public class ShoppingProcessTest extends Hooks {
     }
 
     @Test
-    public void AddProductAsUnauthenticatedUser() {
+    public void AddProductAsUnauthenticatedUser(Method method) {
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
 
         ecofoodFacade.addProductsFromHomePage();
         int productsAdded = ecofoodFacade.getTotalProductsAdded();
@@ -40,7 +45,8 @@ public class ShoppingProcessTest extends Hooks {
     }
 
     @Test
-    public void AddAllStockProduct() {
+    public void AddAllStockProduct(Method method) {
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
 
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addAllStock();
@@ -49,7 +55,8 @@ public class ShoppingProcessTest extends Hooks {
     }
 
     @Test
-    public void decreaseTheQuantity() {
+    public void decreaseTheQuantity(Method method) {
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
 
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
@@ -60,7 +67,8 @@ public class ShoppingProcessTest extends Hooks {
     }
 
     @Test
-    public void emptyShoppingCart() {
+    public void emptyShoppingCart(Method method) {
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
 
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
@@ -70,7 +78,8 @@ public class ShoppingProcessTest extends Hooks {
     }
 
     @Test
-    public void productDetailsAsALoggedUser() {
+    public void productDetailsAsALoggedUser(Method method) {
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
 
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.goToCatalogPage();

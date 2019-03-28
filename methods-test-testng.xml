@@ -1,6 +1,8 @@
-<suite name="TestSuite" thread-count="2" parallel="methods">
-    <test name="testGuru">
+<suite name="TestSuite" thread-count="8" parallel="methods">
+    <test name="testFabio">
         <classes>
+            <class name="tests.ShoppingProcessTest">
+            </class>
             <class name="tests.UsersAccountTest">
             </class>
         </classes>
