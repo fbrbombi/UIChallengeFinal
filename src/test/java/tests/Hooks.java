@@ -4,6 +4,7 @@ import helpers.ConfigLoader;
 import helpers.EcofoodFacade;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,9 +35,12 @@ public abstract class Hooks {
 //        } catch (MalformedURLException e) {
 //            e.printStackTrace();
 //        }
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setHeadless(true);
         System.out.println(Thread.currentThread().getId());
         System.out.println(method.getName());
-        WebDriver webDriver = new ChromeDriver();
+        WebDriver webDriver = new ChromeDriver(chromeOptions);
         webDriver.get(ConfigLoader.getValueByKey("URL"));
         webDriver.manage().window().maximize();
         webDriverMap.put(method.getName(), webDriver);
