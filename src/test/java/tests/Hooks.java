@@ -35,16 +35,12 @@ public abstract class Hooks {
 //        } catch (MalformedURLException e) {
 //            e.printStackTrace();
 //        }
-
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setHeadless(true);
-        System.out.println(Thread.currentThread().getId());
-        System.out.println(method.getName());
         WebDriver webDriver = new ChromeDriver(chromeOptions);
         webDriver.get(ConfigLoader.getValueByKey("URL"));
         webDriver.manage().window().maximize();
         webDriverMap.put(method.getName(), webDriver);
-
         DataHandler.dataRead("data.txt", DataHandler.DataType.DATA);
     }
 

@@ -70,7 +70,6 @@ public class EcofoodMainPage extends EcofoodBasePage {
         product.click();
         for (int i = 0; i < Integer.parseInt(total); i++) {
             putProduct();
-            System.out.println(i + 1);
         }
     }
 

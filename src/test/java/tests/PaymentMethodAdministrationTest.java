@@ -3,15 +3,18 @@ package tests;
 import helpers.EcofoodFacade;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PaymentMethodAdministrationTest extends Hooks {
 
-    EcofoodFacade ecofoodFacade;
 
     @Test
-    public void successfulCheckoutWithUnregisteredPayment() {
+    public void successfulCheckoutWithUnregisteredPayment(Method method) {
+
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
         ecofoodFacade.goToCheckoutPageFromHomePage();
@@ -23,8 +26,9 @@ public class PaymentMethodAdministrationTest extends Hooks {
     }
 
     @Test
-    public void successfulCheckoutWithRegisteredPayment() {
+    public void successfulCheckoutWithRegisteredPayment(Method method) {
 
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.goToPaymentMethodPage();
         ecofoodFacade.addNewMethod();

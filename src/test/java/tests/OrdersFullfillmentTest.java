@@ -3,19 +3,18 @@ package tests;
 import helpers.EcofoodFacade;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class OrdersFullfillmentTest extends Hooks {
 
 
-    EcofoodFacade ecofoodFacade;
-
     @Test
-    public void verifyOrder() {
+    public void verifyOrder(Method method) {
 
-
-        System.out.println(Thread.currentThread().getId());
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
         ecofoodFacade.goToCheckoutPageFromHomePage();

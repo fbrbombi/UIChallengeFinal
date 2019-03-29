@@ -61,6 +61,5 @@ public class EcofoodOrderPage extends EcofoodBasePage {
             orderNumber.add(Integer.parseInt(order.getText()));
         }
         Collections.sort(orderNumber);
-        System.out.println(orderNumber);
     }
 }

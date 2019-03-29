@@ -12,8 +12,8 @@ public class ShoppingProcessTest extends Hooks {
 
     @Test
     public void AddProductsFromHomePage(Method method) {
-        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
 
+        EcofoodFacade ecofoodFacade = setEcofoodFacade(method.getName());
         ecofoodFacade.userIsLoggedIn();
         ecofoodFacade.addProductsFromHomePage();
         int productsAdded = ecofoodFacade.verifyProductsAddedFromHomePage();
