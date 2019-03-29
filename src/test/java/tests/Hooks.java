@@ -1,10 +1,9 @@
 package tests;
 
+import factories.LocalDriverFactory;
 import helpers.ConfigLoader;
 import helpers.EcofoodFacade;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,23 +20,8 @@ public abstract class Hooks {
 
     @BeforeMethod
     public void setup(Method method) {
-//        String testName = method.getName();
-//        String sauceLabs = "http://"
-//                + ConfigLoader.getValueByKey("username") + ":"
-//                + ConfigLoader.getValueByKey("accessKey") +
-//                "@ondemand.saucelabs.com:80/wd/hub";
-//        DesiredCapabilities caps = DesiredCapabilities.chrome();
-//        caps.setCapability("platform", "Windows 10");
-//        caps.setCapability("version", "72.0");
-//        caps.setCapability("name", testName);
-//        try {
-//            webDriver = new RemoteWebDriver(new URL(sauceLabs), caps);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(true);
-        WebDriver webDriver = new ChromeDriver(chromeOptions);
+
+        WebDriver webDriver = new LocalDriverFactory().createWebDriver();
         webDriver.get(ConfigLoader.getValueByKey("URL"));
         webDriver.manage().window().maximize();
         webDriverMap.put(method.getName(), webDriver);

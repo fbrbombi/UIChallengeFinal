@@ -1,4 +1,4 @@
-<suite name="TestSuite" thread-count="16" parallel="methods">
+<suite name="TestSuite" thread-count="8" parallel="methods">
     <test name="testFabio">
         <classes>
             <class name="tests.ShoppingProcessTest">

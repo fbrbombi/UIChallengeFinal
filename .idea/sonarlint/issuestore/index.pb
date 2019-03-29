@@ -21,3 +21,7 @@ Z
 -src/test/java/pages/EcofoodPayMethodPage.java,e\b\eb491f937888874f408ccf7cb51fdcfc126e811a
 W
 'src/test/java/helpers/DriverFacade.java,0\6\062e6b0217b52c5a40005e6b165141dfee450ca3
+N
+src/test/java/tests/Hooks.java,2\b\2b7a535b630b8e5bd16e2b5cd1ace86b399f8d44
+G
+methods-test-testng.xml,0\e\0eed4f3918e56b6138514853f1cb499a53e7527f
